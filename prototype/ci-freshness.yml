@@ -47,3 +47,16 @@ jobs:
             git commit -m "Сканер: заявки хранителям $(date +%F)"
             git push
           fi
+
+  deadman:
+    # Dead man's switch (документ 10 §10.5): если инстанс молчит >30 дней,
+    # job падает — сигнал опубликовать канон на зеркала (python3 deadman.py).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Проверка признаков жизни инстанса
+        working-directory: prototype
+        run: python3 deadman.py --days 30 --check
