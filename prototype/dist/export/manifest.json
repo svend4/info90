@@ -1,0 +1,113 @@
+{
+  "instance": "zh-lib prototype",
+  "exported_at": "2026-07-19T15:51:55Z",
+  "cards": 3,
+  "card_versions": {
+    "kn-2026-0417": "14",
+    "kn-2026-0007": "9",
+    "kn-2026-0201": "3"
+  },
+  "ledger_lines": 7,
+  "files": {
+    "README.md": {
+      "sha256": "9815e59806e85db02eb07a6f0c54bcc9956fd3203e0e92804cd9aa7516bad7f5",
+      "bytes": 12946
+    },
+    "_ledger.log": {
+      "sha256": "3f10049629698485d57ff9d60b063b4539f616f51c60c6f7d85bdc8ca87b68f5",
+      "bytes": 1630
+    },
+    "_rubrics.yml": {
+      "sha256": "17e3d7b025cb85df2f6c54e563bfe4d9b0ec3cdaf0b194a3d92fc3605f667ea0",
+      "bytes": 567
+    },
+    "canon/formy/agregatory/kn-2026-0417-moderaciya-v-reddit.md": {
+      "sha256": "96d4c18076c6484c7b1f437e060a532c5cda839fbab0431d685e22a6ce1f0a5c",
+      "bytes": 2513
+    },
+    "canon/formy/katalogi/kn-2026-0007-katalogi.md": {
+      "sha256": "49ecb29c774855983486faeb96cf81d6fb67bad9cdba1ff54fb70721a2359229",
+      "bytes": 3324
+    },
+    "canon/nejroseti/obuchenie/kn-2026-0201-pereobuchenie.md": {
+      "sha256": "cca3dbbdb7f8a8c2b62be2c0e764f2f1d22cd9f4b6492707b4beaf8b8c64dcf1",
+      "bytes": 2373
+    },
+    "dist/drafts.html": {
+      "sha256": "1b1db04847644331e98ac28011db230de7a438ce0bab7418d2a81b616efc06c6",
+      "bytes": 4429
+    },
+    "dist/federation/actors.json": {
+      "sha256": "055f829120ea5fbbacd88e36ac3540786e64d585a05b35bbbc85b772568c3b7d",
+      "bytes": 1127
+    },
+    "dist/federation/kn-2026-0007.json": {
+      "sha256": "2a3dc624a0b7ebd3cdff8a6f3f293dbc2f2257a579feee487bd4e8009aca8bde",
+      "bytes": 6355
+    },
+    "dist/federation/kn-2026-0201.json": {
+      "sha256": "5c4d844d24c2bbf7c9dc71a340be1d1d4f6ea52a2bd6ee9ffa793231e82e12f2",
+      "bytes": 4507
+    },
+    "dist/federation/kn-2026-0417.json": {
+      "sha256": "0b823fc068f7f4e0f7403157e79c06cce38bdeedb43715bb7197216f0089f492",
+      "bytes": 4933
+    },
+    "dist/federation/outbox-formy_agregatory.json": {
+      "sha256": "4f70b2651cb86b74c4f2e596fc25106298d7f8b4901c1b9d55c5839b740d0ee2",
+      "bytes": 508
+    },
+    "dist/federation/outbox-formy_katalogi.json": {
+      "sha256": "63bf25454434f2a3c9aebeaa1322a445c2ecdf646e1ac998dee540975be177f8",
+      "bytes": 474
+    },
+    "dist/federation/outbox-nejroseti_obuchenie.json": {
+      "sha256": "c8b9347f5759e15c9af8dd8752089f8d2b9e35d7c92e2ce279517e3e88a0962e",
+      "bytes": 495
+    },
+    "dist/feeds/formy.xml": {
+      "sha256": "a6238c17edbb63348e4c65abead44063642449f5cf80b626cf4705b1a00b2edd",
+      "bytes": 328
+    },
+    "dist/feeds/formy_agregatory.xml": {
+      "sha256": "19dd3c05acaad01c4db3e22052da977a025a62a0518f85fea6a19fb27e7e4fe8",
+      "bytes": 585
+    },
+    "dist/feeds/formy_katalogi.xml": {
+      "sha256": "c6fb2feade3828924a67f2b498e0543cb43edbbbfd567ad0a0924b1568c2f250",
+      "bytes": 549
+    },
+    "dist/feeds/nejroseti.xml": {
+      "sha256": "39ef31443dfcf49f1ed92b4b74c68432ec75719fedc1f7f1e22885da836f4758",
+      "bytes": 292
+    },
+    "dist/feeds/nejroseti_obuchenie.xml": {
+      "sha256": "53f6b803f61203b2a88cc5219061850bf2327f8982f42a564acb811418607516",
+      "bytes": 594
+    },
+    "dist/health.html": {
+      "sha256": "78c8afe599065003a72d8ecc1df3456efcd4a077682c440b3deb196ae80b52a2",
+      "bytes": 3913
+    },
+    "dist/index.html": {
+      "sha256": "f5e27ec0798b3348bd74ed8544bbf5949d2ca33a9117d3e256756858eec6bfa5",
+      "bytes": 5039
+    },
+    "dist/kn-2026-0007.html": {
+      "sha256": "1b193cf8d6aac9d33dfb395b74a3f147001d79421e1c5977459a9b7d0d4da1b8",
+      "bytes": 6377
+    },
+    "dist/kn-2026-0201.html": {
+      "sha256": "ecc6972116364316d2175c391ea2558a5b870fdb1b05cf18df3822ea83836a11",
+      "bytes": 5408
+    },
+    "dist/kn-2026-0417.html": {
+      "sha256": "409854b594d4cbe69f5bc4a79bce644c4c1c59fdd0ec08ffdc680a0e64abe291",
+      "bytes": 5564
+    },
+    "dist/ledger.html": {
+      "sha256": "3a76e525757e1e45a6c00e444bd2bab2114be69acbb1f63134a3bee74010b6b3",
+      "bytes": 5352
+    }
+  }
+}
