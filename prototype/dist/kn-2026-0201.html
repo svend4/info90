@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Типовая причина переобучения малой модели — Живая Библиотека (прототип)</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2a28;--muted:#7a756d;--accent:#b3541e;--line:#e6e0d6;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{padding:36px 0 20px;border-bottom:3px double var(--line)}
+h1{font-size:34px}.kick{font-family:Arial;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+nav{font-family:Arial;font-size:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+nav a{color:var(--ink);margin-right:18px;text-decoration:none}nav a:hover{color:var(--accent)}
+main{padding:28px 0 40px}
+.banner{font-family:Arial;font-size:13px;padding:8px 14px;border-radius:4px;margin:18px 0;display:inline-block;color:#fff}
+.meta{font-family:Arial;font-size:13px;color:var(--muted);margin:6px 0 20px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin:14px 0}
+.card h3{font-size:18px;margin-bottom:6px}
+.card a{color:var(--accent);text-decoration:none}
+.card .st{font-family:Arial;font-size:11px;padding:2px 8px;border-radius:3px;color:#fff}
+h2{border-bottom:1px solid var(--line);padding-bottom:8px;margin:26px 0 14px;font-size:24px}
+article h2{border:none;margin:20px 0 8px;padding:0;font-size:21px}
+article h3{font-size:17px;margin:16px 0 6px}
+article p{margin:10px 0}article ul,article ol{margin:10px 0 10px 24px}
+article li{margin:4px 0}
+.links li, .src li{font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 34px;font-family:Arial;font-size:13px;color:var(--muted)}
+code{background:#f0ebe2;padding:1px 5px;border-radius:3px;font-size:14px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
+<h1>Типовая причина переобучения малой модели</h1></header>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a></nav>
+<main>
+<span class="banner" style="background:#2e7d4f">✅ Актуально</span>
+<div class="meta">Проверено: <b>2026-07-02</b> · Ревизия до: <b>2027-01-02</b> ·
+Хранитель: <b>@pavel_d</b> · Версия 3 · Рубрика: nejroseti/obuchenie</div>
+<article><p>Эта карточка отвечает на вопрос: <strong>почему маленькая модель быстро запоминает обучающую выборку и перестаёт обобщать — и что проверить в первую очередь.</strong> (Уровень источника: C — опыт сообщества, дистиллировано из чата.)</p>
+<h2>Симптомы</h2>
+<ul><li>Loss на обучении падает, на валидации растёт уже после ~2 эпох.</li><li>Модель уверенно отвечает на примеры из train и молчит на новых.</li></ul>
+<h2>Типовая причина</h2>
+<p>В 8 из 10 случаев, разобранных в чате, причина одна: <strong>обучающая выборка слишком мала и не перемешана</strong> — модель видит одни и те же примеры в одном порядке и запоминает их как таблицу.</p>
+<h2>Что проверить (по порядку)</h2>
+<ol><li>Перемешан ли датасет между эпохами (shuffle).</li><li>Доля дубликатов и near-duplicates в train (быстрый тест — по хешам нормализованного текста).</li><li>Соотношение «параметры модели / число примеров»: примеров меньше, чем параметров, — жди запоминания.</li><li>Early stopping по валидационному loss включён ли вообще.</li></ol>
+<h2>Когда причина другая</h2>
+<p>Если пункты 1–4 чисты, типовые варианты: слишком высокий learning rate (проверить кривую на первых 100 шагах) или утечка train в валидацию.</p></article>
+<h2>Связи</h2><ul class="links"><li>primer → <a href="kn-2026-0417.html">kn-2026-0417</a></li></ul>
+<h2>Источники</h2><ul class="src"><li><a href="https://example.com/chat-thread-8812">Дистилляция треда чата #nejroseti от 01.07.2026</a> (проверен 2026-07-02)</li></ul>
+<div class="meta" style="margin-top:24px">Соавторы: @anna_p · ID: kn-2026-0201</div></main>
+<footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
+</div></body></html>
