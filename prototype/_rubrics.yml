@@ -1,0 +1,19 @@
+# Дерево рубрик прототипа (фаза 0)
+rubrics:
+  - id: formy
+    title: Формы организации информации
+    keeper: marina_k
+    children:
+      - id: formy/agregatory
+        title: Агрегаторы и голосование
+        keeper: marina_k
+      - id: formy/katalogi
+        title: Каталоги
+        keeper: igor_s
+  - id: nejroseti
+    title: Нейросети
+    keeper: pavel_d
+    children:
+      - id: nejroseti/obuchenie
+        title: Обучение моделей
+        keeper: pavel_d
