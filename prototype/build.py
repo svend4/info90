@@ -109,6 +109,8 @@ def load_cards():
             meta, body = split_card(text)
             meta['slug'] = meta['id']
             meta['body_html'] = md_to_html(body)
+            meta['body_raw'] = body
+            meta['relpath'] = os.path.relpath(os.path.join(dirpath, f), ROOT)
             meta['file'] = f
             cards.append(meta)
     return cards
@@ -199,6 +201,42 @@ def health_page(rows):
 <p class="meta">Анти-метрики (вовлечённость, лайки, рост ради роста) здесь сознательно не измеряются.</p>"""
     return page('Здоровье канона', body)
 
+def load_drafts():
+    """Черновики inbox/ (фаза 2): машина черновит, человек публикует."""
+    inbox = os.path.join(ROOT, 'inbox')
+    drafts = []
+    if not os.path.isdir(inbox):
+        return drafts
+    for f in sorted(os.listdir(inbox)):
+        if f.startswith('kn-') and f.endswith('.md'):
+            text = open(os.path.join(inbox, f), encoding='utf-8').read()
+            meta, _ = split_card(text)
+            meta['file'] = f
+            drafts.append(meta)
+    return drafts
+
+def drafts_page(drafts):
+    if drafts:
+        items = ''.join(
+            '<div class="card"><span class="st" style="background:%s">%s</span> '
+            '<b>%s</b> «%s» — хранитель: %s, соавторы: %s, рубрика: %s '
+            '<div class="meta">файл: inbox/%s · ждёт ревизии человека</div></div>'
+            % (STATUS.get(d.get('status', ''), ('', '#7a756d'))[1],
+               STATUS.get(d.get('status', ''), ('?',))[0],
+               d.get('id', '?'), html.escape(d.get('title', '')),
+               d.get('keeper', '—'), ', '.join(d.get('coauthors', [])),
+               ', '.join(d.get('rubrics', [])), html.escape(d['file']))
+            for d in drafts)
+    else:
+        items = '<p class="meta">Черновиков нет. Машина ещё не дистиллировала треды.</p>'
+    body = f"""
+<p>Входной ящик дистилляции (документ 10 §10.4): ИИ превращает треды чатов и форумов
+в черновики карточек. Железное правило: у машины нет write-доступа к канону —
+черновик живёт здесь, пока хранитель-человек не прочитает и не решит.</p>
+{items}
+<p class="meta">Создать черновик: <code>python3 distill.py &lt;тред.md&gt; --rubric … --keeper …</code></p>"""
+    return page('Черновики', body)
+
 def rss_for_rubric(rubric, cards):
     items = ''
     for c in sorted([c for c in cards if rubric['id'] in c.get('rubrics', [])],
@@ -262,7 +300,7 @@ def page(title, body):
 <style>{CSS}</style></head><body><div class="wrap">
 <header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
 <h1>{html.escape(title)}</h1></header>
-<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a><a href="ledger.html">Журнал</a><a href="health.html">Здоровье</a></nav>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a><a href="ledger.html">Журнал</a><a href="health.html">Здоровье</a><a href="drafts.html">Черновики</a></nav>
 <main>{body}</main>
 <footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
 </div></body></html>"""
@@ -310,7 +348,7 @@ def index_page(cards, rubrics):
 <h2 id="rubrics">Рубрики</h2>{rub}
 <h2 id="cards">Карточки канона (по свежести проверки)</h2>{cl}
 <h2>Система</h2>
-<p><a href="ledger.html">📜 Журнал власти</a> · <a href="health.html">💚 Здоровье канона</a> ·
+<p><a href="ledger.html">📜 Журнал власти</a> · <a href="health.html">💚 Здоровье канона</a> · <a href="drafts.html">📥 Черновики</a> ·
 RSS-фиды рубрик: <code>feeds/&lt;rubrika&gt;.xml</code> (хронологические, без алгоритмов)</p>"""
     return page('Канон', body)
 
@@ -327,6 +365,8 @@ def main():
     # фаза 1: журнал, здоровье, RSS-фиды рубрик
     open(os.path.join(DIST, 'ledger.html'), 'w', encoding='utf-8').write(ledger_page(load_ledger()))
     open(os.path.join(DIST, 'health.html'), 'w', encoding='utf-8').write(health_page(health_rows(cards, rubrics)))
+    # фаза 2: черновики дистилляции
+    open(os.path.join(DIST, 'drafts.html'), 'w', encoding='utf-8').write(drafts_page(load_drafts()))
     feeds = os.path.join(DIST, 'feeds')
     os.makedirs(feeds, exist_ok=True)
     n_feeds = 0
