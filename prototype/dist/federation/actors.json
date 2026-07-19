@@ -1,0 +1,26 @@
+[
+  {
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Person",
+    "id": "https://zh-lib.local/federation/actors/igor_s",
+    "preferredUsername": "igor_s",
+    "name": "Хранитель @igor_s",
+    "summary": "Именная роль в Живой Библиотеке: власть срочная, публичная, обжалуемая."
+  },
+  {
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Person",
+    "id": "https://zh-lib.local/federation/actors/marina_k",
+    "preferredUsername": "marina_k",
+    "name": "Хранитель @marina_k",
+    "summary": "Именная роль в Живой Библиотеке: власть срочная, публичная, обжалуемая."
+  },
+  {
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Person",
+    "id": "https://zh-lib.local/federation/actors/pavel_d",
+    "preferredUsername": "pavel_d",
+    "name": "Хранитель @pavel_d",
+    "summary": "Именная роль в Живой Библиотеке: власть срочная, публичная, обжалуемая."
+  }
+]

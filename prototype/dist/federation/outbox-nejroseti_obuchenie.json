@@ -1,0 +1,15 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "OrderedCollection",
+  "id": "https://zh-lib.local/federation/outbox-nejroseti_obuchenie",
+  "name": "Рубрика «Обучение моделей» — анонсы версий",
+  "totalItems": 1,
+  "orderedItems": [
+    {
+      "type": "Announce",
+      "actor": "https://zh-lib.local/federation/actors/pavel_d",
+      "object": "https://zh-lib.local/federation/kn-2026-0201",
+      "published": "2026-07-02"
+    }
+  ]
+}

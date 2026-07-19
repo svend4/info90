@@ -1,0 +1,15 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "OrderedCollection",
+  "id": "https://zh-lib.local/federation/outbox-formy_katalogi",
+  "name": "Рубрика «Каталоги» — анонсы версий",
+  "totalItems": 1,
+  "orderedItems": [
+    {
+      "type": "Announce",
+      "actor": "https://zh-lib.local/federation/actors/igor_s",
+      "object": "https://zh-lib.local/federation/kn-2026-0007",
+      "published": "2026-07-19"
+    }
+  ]
+}
