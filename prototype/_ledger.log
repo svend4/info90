@@ -2,3 +2,6 @@
 2026-07-19T10:15:00Z | ldg-0002 | author:anna_p | change.proposed | change=ch-0001 | card=kn-2026-0007 | reason="Добавлен раздел о возрождении каталогов 2020-х, источники проверены заново"
 2026-07-19T11:02:00Z | ldg-0003 | keeper:igor_s | change.accepted | change=ch-0001 | card=kn-2026-0007 | version=9 | comment="Принято по чек-листу 11.4: источник уровня B добавлен, даты проставлены, противоречий нет"
 2026-07-19T14:55:12Z | ldg-0004 | distill.py | question.distilled | card=kn-2026-0418 | rubric=formy/agregatory | source=sample-thread.md | participants=4 | comment="черновик в inbox/, ждёт хранителя marina_k"
+2026-07-19T15:50:18Z | ldg-0005 | distill.py | question.distilled | card=kn-2026-0419 | rubric=formy/katalogi | source=thread-001.md | participants=3 | comment="черновик в inbox/, ждёт хранителя igor_s"
+2026-07-19T15:50:19Z | ldg-0006 | distill.py | question.distilled | card=kn-2026-0420 | rubric=nejroseti/obuchenie | source=thread-002.md | participants=2 | comment="черновик в inbox/, ждёт хранителя igor_s"
+2026-07-19T15:50:19Z | ldg-0007 | migrate.py | community.migrated | community="Форум oldweb-forum.ru (архив, 2009–2017)" | threads=2 | drafts=2 | keeper=igor_s | comment="амнистия-миграция: черновики ждут ревью ядра"
