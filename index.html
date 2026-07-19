@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info90 — Тестовая страница: новости ИИ и компьютерных технологий</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --ink: #2b2a28;
+      --muted: #7a756d;
+      --accent: #b3541e;
+      --accent-soft: #f3e4d8;
+      --line: #e6e0d6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      border-bottom: 3px double var(--line);
+      padding: 40px 0 24px;
+    }
+    .kicker {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1 { font-size: 42px; margin-top: 8px; }
+    .subtitle { color: var(--muted); margin-top: 8px; font-style: italic; }
+    .test-banner {
+      margin-top: 18px;
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+    }
+
+    nav {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    nav a { color: var(--ink); text-decoration: none; margin-right: 22px; }
+    nav a:hover { color: var(--accent); }
+
+    section { padding: 36px 0 8px; }
+    h2 {
+      font-size: 26px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+    }
+    h2 span { color: var(--accent); }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 30px; } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 22px;
+    }
+    .card .tag {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card h3 { font-size: 19px; margin: 8px 0 10px; }
+    .card p { font-size: 15px; color: #4a4742; }
+    .card .date {
+      display: block;
+      margin-top: 14px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 48px;
+      padding: 24px 0 40px;
+      border-top: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="kicker">Info90 · Технологический дайджест</div>
+      <h1>Новости ИИ, нейросетей и компьютерных технологий</h1>
+      <p class="subtitle">Тестовая страница репозитория svend4/info90</p>
+      <div class="test-banner">⚠ Тестовая страница: все новости ниже — вымышленные примеры для проверки вёрстки</div>
+    </header>
+
+    <nav>
+      <a href="#ai">Искусственный интеллект</a>
+      <a href="#nn">Нейросети</a>
+      <a href="#dev">Разработка и железо</a>
+    </nav>
+
+    <section id="ai">
+      <h2>Искусственный интеллект <span>/ последние новости</span></h2>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">ИИ · Модели</div>
+          <h3>Тестовая новость: представлена новая языковая модель</h3>
+          <p>Условная компания объявила о выпуске экспериментальной языковой модели,
+             которая демонстрирует улучшенные результаты в задачах рассуждения и генерации кода.
+             Это пример текста-заглушки для проверки отображения карточек новостей.</p>
+          <span class="date">19 июля 2026 · Тестовый материал</span>
+        </article>
+        <article class="card">
+          <div class="tag">ИИ · Индустрия</div>
+          <h3>Тестовая новость: ИИ-ассистенты внедряются в разработку ПО</h3>
+          <p>Вымышленный обзор о том, как инструменты на базе ИИ помогают программистам:
+             автодополнение кода, автоматическое ревью, генерация тестов и документации.
+             Текст служит для проверки вёрстки страницы.</p>
+          <span class="date">18 июля 2026 · Тестовый материал</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="nn">
+      <h2>Нейросети <span>/ исследования</span></h2>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">Нейросети · Обучение</div>
+          <h3>Тестовая новость: новый метод ускоряет обучение сетей</h3>
+          <p>Пример заметки о гипотетическом методе оптимизации, снижающем затраты
+             на обучение крупных нейронных сетей. Используется как наполнитель
+             для тестирования дизайна страницы.</p>
+          <span class="date">17 июля 2026 · Тестовый материал</span>
+        </article>
+        <article class="card">
+          <div class="tag">Нейросети · Генерация</div>
+          <h3>Тестовая новость: генеративные модели создают изображения и звук</h3>
+          <p>Условный материал о мультимодальных нейросетях, способных работать
+             с текстом, изображениями и аудио одновременно. Контент вымышленный,
+             предназначен для проверки отображения.</p>
+          <span class="date">16 июля 2026 · Тестовый материал</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="dev">
+      <h2>Разработка и компьютерная тематика <span>/ технологии</span></h2>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">Разработка · Инструменты</div>
+          <h3>Тестовая новость: обновление популярной среды разработки</h3>
+          <p>Вымышленный релиз IDE с улучшенной поддержкой контейнеров,
+             отладки и совместной работы. Текст-заглушка для тестовой страницы.</p>
+          <span class="date">15 июля 2026 · Тестовый материал</span>
+        </article>
+        <article class="card">
+          <div class="tag">Железо · Процессоры</div>
+          <h3>Тестовая новость: новое поколение процессоров для ИИ-задач</h3>
+          <p>Пример заметки об условных чипах, оптимизированных под вычисления
+             для нейросетей. Информация вымышленная и служит для проверки вёрстки.</p>
+          <span class="date">14 июля 2026 · Тестовый материал</span>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      Info90 · Тестовая страница · Создано автоматически · Все материалы на странице являются учебными примерами
+    </footer>
+
+  </div>
+</body>
+</html>
