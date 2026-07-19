@@ -1,3 +1,4 @@
 2026-07-01T09:00:00Z | ldg-0001 | system | canon.initialized | cards=3 | comment="Первый коммит канона прототипа"
 2026-07-19T10:15:00Z | ldg-0002 | author:anna_p | change.proposed | change=ch-0001 | card=kn-2026-0007 | reason="Добавлен раздел о возрождении каталогов 2020-х, источники проверены заново"
 2026-07-19T11:02:00Z | ldg-0003 | keeper:igor_s | change.accepted | change=ch-0001 | card=kn-2026-0007 | version=9 | comment="Принято по чек-листу 11.4: источник уровня B добавлен, даты проставлены, противоречий нет"
+2026-07-19T14:55:12Z | ldg-0004 | distill.py | question.distilled | card=kn-2026-0418 | rubric=formy/agregatory | source=sample-thread.md | participants=4 | comment="черновик в inbox/, ждёт хранителя marina_k"
