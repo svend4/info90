@@ -374,6 +374,9 @@ def main():
         slug = r['id'].replace('/', '_') + '.xml'
         open(os.path.join(feeds, slug), 'w', encoding='utf-8').write(rss_for_rubric(r, cards))
         n_feeds += 1
+    # фаза 3: признак жизни инстанса для dead man's switch (документ 10 §10.5)
+    open(os.path.join(ROOT, '_heartbeat'), 'w', encoding='utf-8').write(
+        datetime.date.today().isoformat() + '\n')
     print(f"OK: {len(cards)} карточек, {len(rubrics)} рубрик, {n_feeds} фидов -> dist/ "
           f"({datetime.date.today().isoformat()})")
 
