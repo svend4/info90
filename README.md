@@ -28,7 +28,7 @@
 
 **Три главных правила проекта:** поток не хранит знания · у каждого утверждения есть дата и хранитель · человек публикует, машина помогает.
 
-### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–2)
+### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–3)
 
 Концепция в коде, без зависимостей — только Python 3.8+:
 
@@ -37,12 +37,16 @@
 - [check_freshness.py](prototype/check_freshness.py) — сканер здоровья канона (метрики, exit-коды для CI, заявки хранителям rq-NNNN)
 - [ask.py](prototype/ask.py) — **RAG-навигатор**: отвечает только цитатами карточек с версиями и датами; вне канона честно молчит
 - [distill.py](prototype/distill.py) — **ИИ-дистилляция**: тред чата → черновик карточки в [inbox/](prototype/inbox/) (машина черновит, человек публикует)
-- [ci-freshness.yml](prototype/ci-freshness.yml) — шаблон workflow: еженедельный cron-сканер устаревания в CI
-- [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only)
+- [export.py](prototype/export.py) — **экспорт-зеркало**: полный снапшот в tar.gz + sha256-манифест
+- [federate.py](prototype/federate.py) — **федерация**: карточки → ActivityPub Article, outbox по рубрикам
+- [deadman.py](prototype/deadman.py) — **dead man's switch**: молчание инстанса >N дней → публикация канона на зеркала из [_mirrors.yml](prototype/_mirrors.yml)
+- [migrate.py](prototype/migrate.py) — **амнистия-миграция**: архив внешнего сообщества → черновики (демо: форум oldweb-forum.ru → kn-2026-0419/0420)
+- [ci-freshness.yml](prototype/ci-freshness.yml) — шаблон workflow: еженедельный cron-сканер + deadman-алерт
+- [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only, 7 событий)
 - [canon/](prototype/canon/) — 3 карточки; [kn-2026-0007](prototype/canon/formy/katalogi/kn-2026-0007-katalogi.md) прошла полный цикл ревизии (v8 → v9 через заявку [ch-0001](prototype/changes/ch-0001.md))
-- [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, черновики, RSS-фиды
+- [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, черновики, RSS-фиды, федерация
 
-Железное правило фазы 2 (документ 10 §10.4): у ИИ-пайплайна нет write-доступа к канону — только чтение и черновики-заявки.
+Железное правило (документ 10 §10.4): у ИИ-пайплайна нет write-доступа к канону — только чтение и черновики-заявки.
 
 ### 📰 [index.html](index.html) — тестовая страница
 
