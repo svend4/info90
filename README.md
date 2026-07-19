@@ -28,16 +28,21 @@
 
 **Три главных правила проекта:** поток не хранит знания · у каждого утверждения есть дата и хранитель · человек публикует, машина помогает.
 
-### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–1)
+### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–2)
 
 Концепция в коде, без зависимостей — только Python 3.8+:
 
-- [build.py](prototype/build.py) — генератор сайта: канон → HTML + RSS + страницы журнала и здоровья
+- [build.py](prototype/build.py) — генератор сайта: канон → HTML + RSS + журнал + здоровье + черновики
 - [propose_change.py](prototype/propose_change.py) / [review_change.py](prototype/review_change.py) — PR-модель правок: дифф, accept/return, обязательный комментарий ревью
-- [check_freshness.py](prototype/check_freshness.py) — сканер здоровья канона (метрики, exit-коды для CI)
+- [check_freshness.py](prototype/check_freshness.py) — сканер здоровья канона (метрики, exit-коды для CI, заявки хранителям rq-NNNN)
+- [ask.py](prototype/ask.py) — **RAG-навигатор**: отвечает только цитатами карточек с версиями и датами; вне канона честно молчит
+- [distill.py](prototype/distill.py) — **ИИ-дистилляция**: тред чата → черновик карточки в [inbox/](prototype/inbox/) (машина черновит, человек публикует)
+- [ci-freshness.yml](prototype/ci-freshness.yml) — шаблон workflow: еженедельный cron-сканер устаревания в CI
 - [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only)
 - [canon/](prototype/canon/) — 3 карточки; [kn-2026-0007](prototype/canon/formy/katalogi/kn-2026-0007-katalogi.md) прошла полный цикл ревизии (v8 → v9 через заявку [ch-0001](prototype/changes/ch-0001.md))
-- [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, RSS-фиды
+- [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, черновики, RSS-фиды
+
+Железное правило фазы 2 (документ 10 §10.4): у ИИ-пайплайна нет write-доступа к канону — только чтение и черновики-заявки.
 
 ### 📰 [index.html](index.html) — тестовая страница
 
