@@ -1,0 +1,49 @@
+# ВНИМАНИЕ: это шаблон GitHub Actions workflow.
+# Чтобы включить cron-сканер, перенесите файл в .github/workflows/freshness.yml
+# (веб-интерфейс GitHub: Add file → Upload, или git push с токеном, имеющим scope workflow).
+
+name: Свежесть канона
+
+# Сканер устаревания Живой Библиотеки (документ 10 §10.4):
+# еженедельный cron + каждый push, трогающий канон.
+# Правило: сканер только создаёт заявки хранителям, автоправок нет.
+# Красные зоны -> workflow падает (exit 1) и виден всем.
+
+on:
+  schedule:
+    - cron: '17 6 * * 1'        # каждый понедельник, 06:17 UTC
+  push:
+    paths:
+      - 'prototype/canon/**'
+      - 'prototype/_rubrics.yml'
+  workflow_dispatch: {}
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Проверка зон здоровья
+        working-directory: prototype
+        run: python3 check_freshness.py --links
+
+      - name: Заявки хранителям (без автоправок канона)
+        working-directory: prototype
+        run: python3 check_freshness.py --create-requests
+
+      - name: Публикация заявок и журнала
+        run: |
+          if git diff --quiet -- prototype/changes prototype/_ledger.log; then
+            echo "Заявок нет — канон здоров."
+          else
+            git config user.name "zh-lib-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add prototype/changes prototype/_ledger.log
+            git commit -m "Сканер: заявки хранителям $(date +%F)"
+            git push
+          fi
