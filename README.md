@@ -28,13 +28,16 @@
 
 **Три главных правила проекта:** поток не хранит знания · у каждого утверждения есть дата и хранитель · человек публикует, машина помогает.
 
-### ⚙️ [prototype/](prototype/) — рабочий прототип Фазы 0
+### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–1)
 
-Доказательство архитектуры в коде: карточки знаний как Markdown-файлы с метаданными в Git + статический генератор на чистом Python (без зависимостей). `python3 build.py` → сайт в `dist/`.
+Концепция в коде, без зависимостей — только Python 3.8+:
 
-- [build.py](prototype/build.py) — генератор (~250 строк, zero-dependency)
-- [canon/](prototype/canon/) — 3 примера карточек (статусы, хранители, связи, источники с датами)
-- [dist/](prototype/dist/) — собранный сайт: главная с рубриками + страницы карточек
+- [build.py](prototype/build.py) — генератор сайта: канон → HTML + RSS + страницы журнала и здоровья
+- [propose_change.py](prototype/propose_change.py) / [review_change.py](prototype/review_change.py) — PR-модель правок: дифф, accept/return, обязательный комментарий ревью
+- [check_freshness.py](prototype/check_freshness.py) — сканер здоровья канона (метрики, exit-коды для CI)
+- [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only)
+- [canon/](prototype/canon/) — 3 карточки; [kn-2026-0007](prototype/canon/formy/katalogi/kn-2026-0007-katalogi.md) прошла полный цикл ревизии (v8 → v9 через заявку [ch-0001](prototype/changes/ch-0001.md))
+- [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, RSS-фиды
 
 ### 📰 [index.html](index.html) — тестовая страница
 
