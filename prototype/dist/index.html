@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Канон — Живая Библиотека (прототип)</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2a28;--muted:#7a756d;--accent:#b3541e;--line:#e6e0d6;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{padding:36px 0 20px;border-bottom:3px double var(--line)}
+h1{font-size:34px}.kick{font-family:Arial;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+nav{font-family:Arial;font-size:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+nav a{color:var(--ink);margin-right:18px;text-decoration:none}nav a:hover{color:var(--accent)}
+main{padding:28px 0 40px}
+.banner{font-family:Arial;font-size:13px;padding:8px 14px;border-radius:4px;margin:18px 0;display:inline-block;color:#fff}
+.meta{font-family:Arial;font-size:13px;color:var(--muted);margin:6px 0 20px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin:14px 0}
+.card h3{font-size:18px;margin-bottom:6px}
+.card a{color:var(--accent);text-decoration:none}
+.card .st{font-family:Arial;font-size:11px;padding:2px 8px;border-radius:3px;color:#fff}
+h2{border-bottom:1px solid var(--line);padding-bottom:8px;margin:26px 0 14px;font-size:24px}
+article h2{border:none;margin:20px 0 8px;padding:0;font-size:21px}
+article h3{font-size:17px;margin:16px 0 6px}
+article p{margin:10px 0}article ul,article ol{margin:10px 0 10px 24px}
+article li{margin:4px 0}
+.links li, .src li{font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 34px;font-family:Arial;font-size:13px;color:var(--muted)}
+code{background:#f0ebe2;padding:1px 5px;border-radius:3px;font-size:14px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
+<h1>Канон</h1></header>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a></nav>
+<main>
+<p>Это работающий прототип Живой Библиотеки: карточки знаний хранятся как Markdown-файлы
+с метаданными в Git-репозитории, а этот сайт собирается из них одним скриптом
+(<code>python3 build.py</code>). Документы проекта — в папке
+<a href="../zhivaya-biblioteka/README.md">zhivaya-biblioteka/</a>.</p>
+<h2 id="rubrics">Рубрики</h2><div class="card"><b>Формы организации информации</b> <span class="meta">(0 📄 · хранитель @marina_k)</span><div class="card" style="margin-left:20px"><b>Агрегаторы и голосование</b> <span class="meta">(1 📄 · хранитель @marina_k)</span></div><div class="card" style="margin-left:20px"><b>Каталоги</b> <span class="meta">(1 📄 · хранитель @igor_s)</span></div></div><div class="card"><b>Нейросети</b> <span class="meta">(0 📄 · хранитель @pavel_d)</span><div class="card" style="margin-left:20px"><b>Обучение моделей</b> <span class="meta">(1 📄 · хранитель @pavel_d)</span></div></div>
+<h2 id="cards">Карточки канона (по свежести проверки)</h2><div class="card"><h3><a href="kn-2026-0201.html">Типовая причина переобучения малой модели</a></h3><span class="st" style="background:#2e7d4f">✅ Актуально</span> <span class="meta">проверено 2026-07-02 · @pavel_d</span></div><div class="card"><h3><a href="kn-2026-0417.html">Как устроена модерация в Reddit</a></h3><span class="st" style="background:#2e7d4f">✅ Актуально</span> <span class="meta">проверено 2026-03-14 · @marina_k</span></div><div class="card"><h3><a href="kn-2026-0007.html">Почему умерли веб-каталоги</a></h3><span class="st" style="background:#a1662f">🔍 Требует ревизии</span> <span class="meta">проверено 2025-11-20 · @igor_s</span></div></main>
+<footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
+</div></body></html>

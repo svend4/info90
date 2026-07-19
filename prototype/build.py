@@ -81,7 +81,8 @@ def md_to_html(md):
         elif re.match(r'^\d+\.\s', l):
             items = []
             while i < len(lines) and re.match(r'^\d+\.\s', lines[i]):
-                items.append(f'<li>{md_inline(re.sub(r"^\\d+\\.\\s", "", lines[i]))}</li>'); i += 1
+                txt = re.sub(r'^\d+\.\s+', '', lines[i])
+                items.append('<li>' + md_inline(txt) + '</li>'); i += 1
             out.append('<ol>' + ''.join(items) + '</ol>')
         elif l.lstrip().startswith('- '):
             items = []
