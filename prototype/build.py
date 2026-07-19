@@ -135,6 +135,88 @@ def load_rubrics():
             stack[-1][1][k] = v
     return rubrics
 
+# ---------- журнал власти и здоровье (фаза 1) ----------
+
+def load_ledger():
+    path = os.path.join(ROOT, '_ledger.log')
+    if not os.path.exists(path):
+        return []
+    rows = []
+    for line in open(path, encoding='utf-8'):
+        parts = [p.strip() for p in line.split(' | ')]
+        if len(parts) >= 4:
+            rows.append(parts)
+    return rows[::-1]  # новые сверху
+
+def health_rows(cards, rubrics):
+    today = datetime.date.today().isoformat()
+    fresh = [c for c in cards if c.get('freshness', {}).get('review_due', '0000') >= today]
+    pct = round(100 * len(fresh) / max(len(cards), 1))
+    orphans = [c['id'] for c in cards if not c.get('keeper')]
+    rows = [
+        ('Свежие ревизии', f'{pct}% ({len(fresh)}/{len(cards)})',
+         'green' if pct > 90 else ('yellow' if pct >= 75 else 'red')),
+        ('Сиротские карточки', f'{len(orphans)}' + (f' ({", ".join(orphans)})' if orphans else ''),
+         'green' if not orphans else ('yellow' if len(orphans) <= 3 else 'red')),
+    ]
+    for r in rubrics:
+        if r.get('children'):
+            continue
+        keepers = {c.get('keeper') for c in cards if r['id'] in c.get('rubrics', [])}
+        keepers.discard(None)
+        if r.get('keeper'):
+            keepers.add(r['keeper'])
+        rows.append((f'Хранители: {r["title"]}', str(len(keepers)),
+                     'green' if len(keepers) >= 2 else ('yellow' if len(keepers) == 1 else 'red')))
+    stale = [c['id'] for c in cards if c.get('freshness', {}).get('review_due', '9999') < today]
+    rows.append(('Просроченные ревизии', ', '.join(stale) if stale else 'нет',
+                 'red' if stale else 'green'))
+    return rows
+
+ZONE_COLOR = {'green': '#2e7d4f', 'yellow': '#a1662f', 'red': '#a13030'}
+
+def ledger_page(rows):
+    trs = ''.join(
+        '<tr>' + ''.join(f'<td>{html.escape(p)}</td>' for p in r) + '</tr>' for r in rows)
+    body = f"""
+<p>Публичный журнал действий власти (документ 04): каждое действие ролей —
+кто, что, когда и почему. Append-only: записи только добавляются.</p>
+<table style="width:100%;border-collapse:collapse;font-family:Arial;font-size:13px">
+<tr style="text-align:left;border-bottom:2px solid var(--line)">
+<th>Время</th><th>ID</th><th>Актор</th><th>Событие</th><th>Детали</th></tr>
+{trs}</table>
+<style>td,th{{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}}</style>"""
+    return page('Журнал власти', body)
+
+def health_page(rows):
+    trs = ''.join(
+        f'<div class="card"><span class="st" style="background:{ZONE_COLOR[z]}">●</span> '
+        f'<b>{html.escape(m)}</b> — {html.escape(v)}</div>' for m, v, z in rows)
+    body = f"""
+<p>Панель здоровья канона (документ 13): метрики с зелёной/жёлтой/красной зонами.
+Проверяется скриптом <code>check_freshness.py</code> — он же возвращает exit code для CI.</p>
+{trs}
+<p class="meta">Анти-метрики (вовлечённость, лайки, рост ради роста) здесь сознательно не измеряются.</p>"""
+    return page('Здоровье канона', body)
+
+def rss_for_rubric(rubric, cards):
+    items = ''
+    for c in sorted([c for c in cards if rubric['id'] in c.get('rubrics', [])],
+                    key=lambda c: c.get('freshness', {}).get('verified_at', ''), reverse=True):
+        st = STATUS.get(c.get('status', 'chernovik'), STATUS['chernovik'])[0]
+        items += f"""  <item>
+    <title>{html.escape(c['title'])}</title>
+    <link>{c['slug']}.html</link>
+    <pubDate>{c.get('freshness', {}).get('verified_at', '')}</pubDate>
+    <description>{st} · хранитель @{c.get('keeper', '—')} · версия {c.get('version', '1')}</description>
+  </item>\n"""
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>Живая Библиотека — {html.escape(rubric['title'])}</title>
+<link>index.html</link>
+<description>Хронологическая лента рубрики (без алгоритмов)</description>
+{items}</channel></rss>"""
+
 # ---------- шаблоны ----------
 
 STATUS = {
@@ -180,7 +262,7 @@ def page(title, body):
 <style>{CSS}</style></head><body><div class="wrap">
 <header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
 <h1>{html.escape(title)}</h1></header>
-<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a></nav>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a><a href="ledger.html">Журнал</a><a href="health.html">Здоровье</a></nav>
 <main>{body}</main>
 <footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
 </div></body></html>"""
@@ -226,7 +308,10 @@ def index_page(cards, rubrics):
 (<code>python3 build.py</code>). Документы проекта — в папке
 <a href="../zhivaya-biblioteka/README.md">zhivaya-biblioteka/</a>.</p>
 <h2 id="rubrics">Рубрики</h2>{rub}
-<h2 id="cards">Карточки канона (по свежести проверки)</h2>{cl}"""
+<h2 id="cards">Карточки канона (по свежести проверки)</h2>{cl}
+<h2>Система</h2>
+<p><a href="ledger.html">📜 Журнал власти</a> · <a href="health.html">💚 Здоровье канона</a> ·
+RSS-фиды рубрик: <code>feeds/&lt;rubrika&gt;.xml</code> (хронологические, без алгоритмов)</p>"""
     return page('Канон', body)
 
 # ---------- сборка ----------
@@ -239,7 +324,17 @@ def main():
     open(os.path.join(DIST, 'index.html'), 'w', encoding='utf-8').write(index_page(cards, rubrics))
     for c in cards:
         open(os.path.join(DIST, c['slug'] + '.html'), 'w', encoding='utf-8').write(card_page(c))
-    print(f"OK: {len(cards)} карточек, {len(rubrics)} рубрик -> dist/ "
+    # фаза 1: журнал, здоровье, RSS-фиды рубрик
+    open(os.path.join(DIST, 'ledger.html'), 'w', encoding='utf-8').write(ledger_page(load_ledger()))
+    open(os.path.join(DIST, 'health.html'), 'w', encoding='utf-8').write(health_page(health_rows(cards, rubrics)))
+    feeds = os.path.join(DIST, 'feeds')
+    os.makedirs(feeds, exist_ok=True)
+    n_feeds = 0
+    for r in rubrics:
+        slug = r['id'].replace('/', '_') + '.xml'
+        open(os.path.join(feeds, slug), 'w', encoding='utf-8').write(rss_for_rubric(r, cards))
+        n_feeds += 1
+    print(f"OK: {len(cards)} карточек, {len(rubrics)} рубрик, {n_feeds} фидов -> dist/ "
           f"({datetime.date.today().isoformat()})")
 
 if __name__ == '__main__':
