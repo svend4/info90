@@ -5,3 +5,8 @@
 2026-07-19T15:50:18Z | ldg-0005 | distill.py | question.distilled | card=kn-2026-0419 | rubric=formy/katalogi | source=thread-001.md | participants=3 | comment="черновик в inbox/, ждёт хранителя igor_s"
 2026-07-19T15:50:19Z | ldg-0006 | distill.py | question.distilled | card=kn-2026-0420 | rubric=nejroseti/obuchenie | source=thread-002.md | participants=2 | comment="черновик в inbox/, ждёт хранителя igor_s"
 2026-07-19T15:50:19Z | ldg-0007 | migrate.py | community.migrated | community="Форум oldweb-forum.ru (архив, 2009–2017)" | threads=2 | drafts=2 | keeper=igor_s | comment="амнистия-миграция: черновики ждут ревью ядра"
+2026-07-20T06:09:57Z | ldg-0008 | author:anna_p | question.opened | question=q-0001 | rubric=formy/katalogi | comment="вопрос открыт, ушёл хранителям рубрики"
+2026-07-20T06:10:14Z | ldg-0009 | keeper:igor_s | question.answered | question=q-0001 | card=kn-2026-0007 | comment="вопрос закрыт ссылкой на карточку"
+2026-07-20T06:10:14Z | ldg-0010 | author:pavel_d | question.opened | question=q-0002 | rubric=nejroseti/obuchenie | comment="вопрос открыт, ушёл хранителям рубрики"
+2026-07-20T06:10:51Z | ldg-0011 | distill.py | question.distilled | card=kn-2026-0421 | rubric=formy/agregatory | source=formy_agregatory.md | participants=3 | comment="черновик в inbox/, ждёт хранителя marina_k"
+2026-07-20T06:10:51Z | ldg-0012 | author:igor_s | thread.pinned | thread=formy_agregatory.md | keeper=marina_k | comment="тред номинирован в канон; решение — за хранителем"
