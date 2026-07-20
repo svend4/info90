@@ -6,7 +6,7 @@
 
 ### 📚 [zhivaya-biblioteka/](zhivaya-biblioteka/) — проект «Живая Библиотека»
 
-Концепция идеальной формы организации информации, собранной из лучших сторон всех исторических форм с устранением их минусов: **«GitHub для знаний», скрещённый с Википедией и форумом**. Комплект из 15 документов:
+Концепция идеальной формы организации информации, собранной из лучших сторон всех исторических форм с устранением их минусов: **«GitHub для знаний», скрещённый с Википедией и форумом**. Комплект из 17 документов:
 
 | № | Документ | О чём |
 |---|----------|-------|
@@ -25,10 +25,12 @@
 | 12 | [Онбординг](zhivaya-biblioteka/12-onbording-i-scenarii.md) | Первые 15 минут новичка, journey-карты ролей |
 | 13 | [Метрики и ритуалы](zhivaya-biblioteka/13-metriki-i-ritualy.md) | Панель здоровья системы, анти-метрики |
 | 14 | [Миграция и глоссарий](zhivaya-biblioteka/14-migraciya-i-glossarij.md) | Playbook переезда сообщества + словарь терминов |
+| 15 | [Вопросы и потоки](zhivaya-biblioteka/15-voprosy-i-potoki.md) | Механика границы «поток ↔ канон»: вопрос как объект, кнопка 📌, сигнал полезности |
+| 16 | [Модель угроз](zhivaya-biblioteka/16-model-ugroz.md) | 8 векторов атак с защитой по слоям и остаточными рисками |
 
 **Три главных правила проекта:** поток не хранит знания · у каждого утверждения есть дата и хранитель · человек публикует, машина помогает.
 
-### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–3)
+### ⚙️ [prototype/](prototype/) — рабочий прототип (фазы 0–3 + поток)
 
 Концепция в коде, без зависимостей — только Python 3.8+:
 
@@ -41,8 +43,11 @@
 - [federate.py](prototype/federate.py) — **федерация**: карточки → ActivityPub Article, outbox по рубрикам
 - [deadman.py](prototype/deadman.py) — **dead man's switch**: молчание инстанса >N дней → публикация канона на зеркала из [_mirrors.yml](prototype/_mirrors.yml)
 - [migrate.py](prototype/migrate.py) — **амнистия-миграция**: архив внешнего сообщества → черновики (демо: форум oldweb-forum.ru → kn-2026-0419/0420)
+- [question.py](prototype/question.py) — **вопросы как объект**: закрываются только ссылкой на карточку; open-вопросы = backlog рубрик ([questions/](prototype/questions/))
+- [thread.py](prototype/thread.py) — **потоковый слой**: реплики, сигнал «полезно» (не вердикт), кнопка «📌 в канон» ([threads/](prototype/threads/))
+- [digest.py](prototype/digest.py) — **еженедельный дайджест-смотр** хранителей ([digest/](prototype/digest/))
 - [ci-freshness.yml](prototype/ci-freshness.yml) — шаблон workflow: еженедельный cron-сканер + deadman-алерт
-- [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only, 7 событий)
+- [_ledger.log](prototype/_ledger.log) — публичный журнал власти (append-only, 12 событий)
 - [canon/](prototype/canon/) — 3 карточки; [kn-2026-0007](prototype/canon/formy/katalogi/kn-2026-0007-katalogi.md) прошла полный цикл ревизии (v8 → v9 через заявку [ch-0001](prototype/changes/ch-0001.md))
 - [dist/](prototype/dist/) — собранный сайт: канон, журнал власти, здоровье, черновики, RSS-фиды, федерация
 
