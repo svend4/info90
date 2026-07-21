@@ -39,3 +39,33 @@ python3 subscribe.py --outbox dist/federation/outbox-formy_katalogi.json \
 - Реплики рубрик `formy/katalogi` и `formy/agregatory` альфы в `replicas/lib-alpha/`.
 - Сценарий «исчезновение оригинала»: при повторной синхронизации с outbox,
   где карточки уже нет, реплика сохраняется с пометкой (правило 5).
+
+## Форк рубрики (fork.py)
+
+Подписка даёт чужое знание дома в read-only; **форк** — «забрать рубрику
+себе» ([документ 17](../zhivaya-biblioteka/17-protokol-federacii.md),
+[документ 25](../zhivaya-biblioteka/25-glazami-vtorogo-instansa.md) §25.4):
+
+```bash
+cd ../prototype
+python3 fork.py keygen daria_v --target ../prototype-beta
+python3 fork.py fork formy/katalogi --from lib-alpha --by daria_v \
+    --target ../prototype-beta --reason "забираем рубрику себе: ..."
+```
+
+Правила форка:
+
+1. **Источник — только реплики** (форк без подписки невозможен).
+2. **Происхождение в паспорте**: `forked_from {instance, card, version, url}`
+   + `forked_at` — форк не скрывает, откуда знание.
+3. **Локальная версия начинается с 1**: свежесть теперь забота локального
+   хранителя; обновления оригинала на форкнутую карточку не распространяются.
+4. **Конфликт id → отказ** (решают люди, протокол не выбирает).
+5. **Реплики остаются** — история подписки не стирается.
+6. **Форк подписан ключом локального хранителя** (`rubric.forked` в
+   `_ledger.log`, edsig — публично проверяемо по `_keys/registry.yml`).
+
+Продемонстрировано: форк `formy/katalogi` →
+[canon/formy/katalogi/kn-2026-0007.md](canon/formy/katalogi/kn-2026-0007.md)
+(ldg-0001); отказы: без подписки, без ключа, не хранитель рубрики,
+повторный форк (конфликт id).

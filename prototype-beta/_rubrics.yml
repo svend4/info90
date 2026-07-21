@@ -6,3 +6,10 @@ rubrics:
       - id: soobshchestva/forumy
         title: "Форумы"
         keepers: [daria_v, oleg_t]
+  - id: formy
+    title: "Форк из lib-alpha"
+    keepers: [daria_v]
+    children:
+      - id: formy/katalogi
+        title: "formy/katalogi (форк из lib-alpha)"
+        keepers: [daria_v]
