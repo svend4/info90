@@ -10,3 +10,8 @@
 2026-07-20T06:10:14Z | ldg-0010 | author:pavel_d | question.opened | question=q-0002 | rubric=nejroseti/obuchenie | comment="вопрос открыт, ушёл хранителям рубрики"
 2026-07-20T06:10:51Z | ldg-0011 | distill.py | question.distilled | card=kn-2026-0421 | rubric=formy/agregatory | source=formy_agregatory.md | participants=3 | comment="черновик в inbox/, ждёт хранителя marina_k"
 2026-07-20T06:10:51Z | ldg-0012 | author:igor_s | thread.pinned | thread=formy_agregatory.md | keeper=marina_k | comment="тред номинирован в канон; решение — за хранителем"
+2026-07-21T05:58:22Z | ldg-0013 | gardener:system | keeper.appointed | keeper=igor_s | rubric=formy/agregatory | role=second | comment="второй хранитель: защита от захвата рубрики (У1, документ 16)"
+2026-07-21T05:58:22Z | ldg-0014 | gardener:system | keeper.appointed | keeper=anna_p | rubric=formy/katalogi | role=second | comment="второй хранитель: защита от захвата рубрики (У1, документ 16)"
+2026-07-21T05:58:22Z | ldg-0015 | gardener:system | keeper.appointed | keeper=anna_p | rubric=nejroseti/obuchenie | role=second | comment="второй хранитель: защита от захвата рубрики (У1, документ 16)"
+2026-07-21T05:58:40Z | ldg-0016 | author:pavel_d | change.proposed | change=ch-0002 | card=kn-2026-0201 | reason="Добавил тезис про dropout из обсуждения в чате"
+2026-07-21T05:58:40Z | ldg-0017 | keeper:pavel_d | change.returned | change=ch-0002 | card=kn-2026-0201 | comment="Возвращено по чек-листу 11.4: тезис про dropout подан как факт, но источника нет даже уровня C. Оформите как гипотезу со ссылкой на тред или уберите."
