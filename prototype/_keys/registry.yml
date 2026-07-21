@@ -18,3 +18,23 @@
   instance: lib-alpha
   fingerprint: a8276cf9da1feefc
   created_at: 2026-07-21T09:27:02Z
+- nick: marina_k
+  instance: lib-alpha
+  ed25519: 3ecc56f7aee71321ed0a7d6dfc1009246daa33e0ff6569707153a50c2a559209
+  created_at: 2026-07-21T13:58:34Z
+- nick: igor_s
+  instance: lib-alpha
+  ed25519: 43415d27124a22ecf0c21e07e5c3afff2e9203f8a80623fa176853b2a2db6cc4
+  created_at: 2026-07-21T13:58:35Z
+- nick: pavel_d
+  instance: lib-alpha
+  ed25519: 499cfa948642608c884e38d61869fc5d8520fb09d55d5cd19f12764380909460
+  created_at: 2026-07-21T13:58:36Z
+- nick: anna_p
+  instance: lib-alpha
+  ed25519: fc45d5a1c6a9a597daff487a09c49ae55c72d86bd255504f669dacf72d0b03b4
+  created_at: 2026-07-21T13:58:37Z
+- nick: sergey_l
+  instance: lib-alpha
+  ed25519: fd62c9be675e1a6bfae449e0fab16746ec80e547563b9ae59f58594793a7a912
+  created_at: 2026-07-21T13:58:37Z
