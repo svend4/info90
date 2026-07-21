@@ -1,15 +1,15 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
   "type": "OrderedCollection",
-  "id": "https://zh-lib.local/federation/outbox-formy_agregatory",
+  "id": "https://lib-alpha.example.org/federation/outbox-formy_agregatory",
   "name": "Рубрика «Агрегаторы и голосование» — анонсы версий",
   "totalItems": 1,
   "orderedItems": [
     {
       "type": "Announce",
-      "actor": "https://zh-lib.local/federation/actors/marina_k",
-      "object": "https://zh-lib.local/federation/kn-2026-0417",
-      "published": "2026-03-14"
+      "actor": "https://lib-alpha.example.org/federation/actors/marina_k",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0417",
+      "published": "2026-07-21"
     }
   ]
 }
