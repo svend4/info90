@@ -21,6 +21,9 @@
   rotation-apply [--days 90]
       Тихий выход спящих хранителей: keeper.rotated reason=inactivity,
       без позора; рубрику ниже 2 хранителей не опускаем без --force.
+  thanks <кому> --by X --text "за что конкретно"
+      Благодарность-запись (§20.7): не бейдж и не число, а строка журнала
+      thanks.recorded с именем и причиной; читается в следе человека.
 
 Записи процедур — файлы trust/v-NNNN.md и trust/rc-NNNN.md;
 факты власти — только в _ledger.log.
@@ -332,6 +335,18 @@ def cmd_recall_close(a):
     print(f'{a.rid}: {a.decision} ({lid}); мотивировка записана в дело и журнал')
 
 
+def cmd_thanks(a):
+    if not a.text or len(a.text.split()) < 4:
+        print('ОТКАЗ: благодарность — факт с причиной, а не междометие (§20.7): опишите, за что конкретно')
+        sys.exit(1)
+    if ':' in a.by:
+        actor = a.by
+    else:
+        actor = ('keeper:' if a.by in all_keepers() else 'author:') + a.by
+    lid = append_ledger(actor, 'thanks.recorded', to=a.to, comment=a.text)
+    print(f'Благодарность записана ({lid}): {a.to} — видна в журнале и в следе человека (digest.py --person)')
+
+
 def _rotation(days):
     text = rubrics_text()
     rows = []
@@ -401,6 +416,9 @@ def main():
     pc.add_argument('--by', required=True); pc.add_argument('--quorum', required=True)
     pc.add_argument('--reason', required=True); pc.add_argument('--force', action='store_true')
     pc.set_defaults(f=cmd_recall_close)
+    p = sub.add_parser('thanks')
+    p.add_argument('to'); p.add_argument('--by', required=True); p.add_argument('--text', required=True)
+    p.set_defaults(f=cmd_thanks)
     p = sub.add_parser('rotation-check'); p.add_argument('--days', type=int, default=90)
     p.set_defaults(f=cmd_rotation_check)
     p = sub.add_parser('rotation-apply'); p.add_argument('--days', type=int, default=90)
