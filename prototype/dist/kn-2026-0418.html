@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ранние голоса и эффект снежного кома — Живая Библиотека (прототип)</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2a28;--muted:#7a756d;--accent:#b3541e;--line:#e6e0d6;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{padding:36px 0 20px;border-bottom:3px double var(--line)}
+h1{font-size:34px}.kick{font-family:Arial;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+nav{font-family:Arial;font-size:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+nav a{color:var(--ink);margin-right:18px;text-decoration:none}nav a:hover{color:var(--accent)}
+main{padding:28px 0 40px}
+.banner{font-family:Arial;font-size:13px;padding:8px 14px;border-radius:4px;margin:18px 0;display:inline-block;color:#fff}
+.meta{font-family:Arial;font-size:13px;color:var(--muted);margin:6px 0 20px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin:14px 0}
+.card h3{font-size:18px;margin-bottom:6px}
+.card a{color:var(--accent);text-decoration:none}
+.card .st{font-family:Arial;font-size:11px;padding:2px 8px;border-radius:3px;color:#fff}
+h2{border-bottom:1px solid var(--line);padding-bottom:8px;margin:26px 0 14px;font-size:24px}
+article h2{border:none;margin:20px 0 8px;padding:0;font-size:21px}
+article h3{font-size:17px;margin:16px 0 6px}
+article p{margin:10px 0}article ul,article ol{margin:10px 0 10px 24px}
+article li{margin:4px 0}
+.links li, .src li{font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 34px;font-family:Arial;font-size:13px;color:var(--muted)}
+code{background:#f0ebe2;padding:1px 5px;border-radius:3px;font-size:14px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
+<h1>Ранние голоса и эффект снежного кома</h1></header>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a><a href="ledger.html">Журнал</a><a href="health.html">Здоровье</a><a href="drafts.html">Черновики</a></nav>
+<main>
+<span class="banner" style="background:#2e7d4f">✅ Актуально</span>
+<div class="meta">Проверено: <b>2026-07-21</b> · Ревизия до: <b>2027-01-17</b> ·
+Хранитель: <b>@marina_k</b> · Версия 1 · Рубрика: formy/agregatory</div>
+<article><p>&gt; Опубликовано хранителем @marina_k 2026-07-21. Исходный черновик дистиллирован машиной из треда «sample-thread.md» (7 реплик, 4 участников). &gt; Машина только черновит — публикует человек-хранитель (правило §10.4).</p>
+<h2>Проблема</h2>
+<ul><li><strong>anna_p:</strong> Проблема: в нашем сообществе новые посты тонут за час, если не набрали голоса сразу. Как с этим жить?</li><li><strong>marina_k:</strong> Вопрос: а есть данные, или это наблюдение?</li></ul>
+<h2>Причина</h2>
+<ul><li><strong>pavel_d:</strong> Это классика. Оказалось, что первые голоса решают почти всё — эффект снежного кома, из-за него поздние читатели просто не видят пост.</li><li><strong>anna_p:</strong> Причина понятна: лента сортирует по горячему, поэтому ранние голоса — это буст видимости, а не оценка качества.</li></ul>
+<h2>Решение</h2>
+<ul><li><strong>pavel_d:</strong> Это классика. Оказалось, что первые голоса решают почти всё — эффект снежного кома, из-за него поздние читатели просто не видят пост.</li><li><strong>pavel_d:</strong> Есть эксперимент 2013 года: одна случайная «плюс-единица» в начале поднимала итоговый рейтинг поста в среднем на 25%. Ссылка: https://science.org/doi/10.1126/science.1240466</li><li><strong>igor_s:</strong> Решение, которое помогло нам в прошлом проекте: случайный порядок для новых постов первые 2 часа + скрытие счётчика голосов. После этого глубина просмотров выросла заметно.</li><li><strong>marina_k:</strong> Итог: голосование — сигнал полезности, а не вердикт качества. Нужно занести это в библиотеку, пригодится для политик ранжирования.</li></ul>
+<h2>Источники</h2>
+<ul><li>https://science.org/doi/10.1126/science.1240466</li></ul>
+<p>--- <em>Черновик: distill.py 2026-07-19. Опубликовано в канон 2026-07-21 после ревизии хранителя (см. журнал власти).</em></p></article>
+
+<h2>Источники</h2><ul class="src"><li><a href="https://science.org/doi/10.1126/science.1240466">из треда</a> (проверен 2026-07-19)</li></ul>
+<div class="meta" style="margin-top:24px">Соавторы: @anna_p, @igor_s, @marina_k, @pavel_d · ID: kn-2026-0418</div></main>
+<footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
+</div></body></html>
