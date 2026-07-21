@@ -25,12 +25,17 @@
       gardener.retired ушедшим по сроку. Номинации из elections/cand-NNNN.md.
   retire <ник> --reason "..." [--by X]
       Добровольный выход до срока: gardener.retired, запись в историю.
+  watch [--days 30] --by <второй_садовник>
+      Автотриггер молчания (§20.9.2): садовник без записей в журнале
+      дольше N дней → фиксация молчания gardener.silence (подписывает
+      ДРУГОЙ садовник). Через 30 дней после фиксации — досрочные
+      выборы со сжатыми сроками (elect).
 
 Записи выборов — файлы elections/cand-NNNN.md; факты власти — _ledger.log.
 """
 import argparse, datetime, os, re, sys
 
-from trust import append_ledger, ledger_lines, all_keepers, TODAY
+from trust import append_ledger, ledger_lines, all_keepers, actor_history, TODAY
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 GARDENERS = os.path.join(ROOT, '_gardeners.yml')
@@ -269,6 +274,42 @@ def cmd_elect(a):
     print(f'Выборы закрыты: садовники — {", ".join(current_nicks(gardeners))}; кворум {len(quorum)}/{len(electorate)}')
 
 
+def cmd_watch(a):
+    gardeners, history = load_gardeners()
+    if a.by not in current_nicks(gardeners):
+        print(f'ОТКАЗ: фиксировать молчание может только действующий садовник, а не {a.by}')
+        sys.exit(1)
+    silent = []
+    for g in gardeners:
+        hist = actor_history(g['nick'])
+        idle = (TODAY - max(hist)).days if hist else 9999
+        mark = ''
+        if idle >= a.days:
+            mark = ' 🔇'
+            silent.append((g['nick'], idle))
+        print(f'  {g["nick"]:12s} молчит {idle} дн.{mark}')
+    if not silent:
+        print(f'Тихих садовников (>={a.days} дн.) нет — триггер не нужен')
+        return
+    for nick, idle in silent:
+        if nick == a.by:
+            print(f'  ⚠ {nick}: молчание нельзя зафиксировать за самого себя — нужен второй садовник')
+            continue
+        recent = [l for l in ledger_lines()
+                  if 'gardener.silence' in l and f'gardener={nick}' in l
+                  and (TODAY - datetime.date.fromisoformat(l[:10])).days <= a.days]
+        if recent:
+            print(f'  ⚠ {nick}: молчание уже зафиксировано ({recent[-1].split(" | ")[1]}); '
+                  f'через 30 дней после фиксации — досрочные выборы (§20.9.2)')
+            continue
+        lid = append_ledger(f'gardener:{a.by}', 'gardener.silence',
+                            gardener=nick, idle_days=idle,
+                            comment=f'молчание {idle} дн. зафиксировано вторым садовником; '
+                                    f'полномочия временно у {a.by}; досрочные выборы через 30 дней (§20.9.2)')
+        print(f'  🔇 {nick}: gardener.silence ({lid}); временные полномочия у {a.by}, '
+              f'досрочные выборы по сжатым срокам 7+7 дней')
+
+
 def cmd_retire(a):
     gardeners, history = load_gardeners()
     if a.nick not in current_nicks(gardeners):
@@ -302,6 +343,9 @@ def main():
     p.add_argument('nick'); p.add_argument('--reason', required=True)
     p.add_argument('--by', default='gardener:system')
     p.set_defaults(f=cmd_retire)
+    p = sub.add_parser('watch')
+    p.add_argument('--days', type=int, default=30); p.add_argument('--by', required=True)
+    p.set_defaults(f=cmd_watch)
     a = ap.parse_args()
     a.f(a)
 
