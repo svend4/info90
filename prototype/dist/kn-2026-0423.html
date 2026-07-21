@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Годовой отчёт инстанса lib-alpha, 2026 — Живая Библиотека (прототип)</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2a28;--muted:#7a756d;--accent:#b3541e;--line:#e6e0d6;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{padding:36px 0 20px;border-bottom:3px double var(--line)}
+h1{font-size:34px}.kick{font-family:Arial;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+nav{font-family:Arial;font-size:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+nav a{color:var(--ink);margin-right:18px;text-decoration:none}nav a:hover{color:var(--accent)}
+main{padding:28px 0 40px}
+.banner{font-family:Arial;font-size:13px;padding:8px 14px;border-radius:4px;margin:18px 0;display:inline-block;color:#fff}
+.meta{font-family:Arial;font-size:13px;color:var(--muted);margin:6px 0 20px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin:14px 0}
+.card h3{font-size:18px;margin-bottom:6px}
+.card a{color:var(--accent);text-decoration:none}
+.card .st{font-family:Arial;font-size:11px;padding:2px 8px;border-radius:3px;color:#fff}
+h2{border-bottom:1px solid var(--line);padding-bottom:8px;margin:26px 0 14px;font-size:24px}
+article h2{border:none;margin:20px 0 8px;padding:0;font-size:21px}
+article h3{font-size:17px;margin:16px 0 6px}
+article p{margin:10px 0}article ul,article ol{margin:10px 0 10px 24px}
+article li{margin:4px 0}
+.links li, .src li{font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 34px;font-family:Arial;font-size:13px;color:var(--muted)}
+code{background:#f0ebe2;padding:1px 5px;border-radius:3px;font-size:14px}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<header><div class="kick">Живая Библиотека · Прототип фазы 0</div>
+<h1>Годовой отчёт инстанса lib-alpha, 2026</h1></header>
+<nav><a href="index.html">Главная</a><a href="index.html#rubrics">Рубрики</a><a href="index.html#cards">Карточки</a><a href="ledger.html">Журнал</a><a href="health.html">Здоровье</a><a href="drafts.html">Черновики</a></nav>
+<main>
+<span class="banner" style="background:#2e7d4f">✅ Актуально</span>
+<div class="meta">Проверено: <b>2026-07-21</b> · Ревизия до: <b>2027-07-21</b> ·
+Хранитель: <b>@marina_k</b> · Версия 1 · Рубрика: sistema/otchety</div>
+<article><h1>Годовой отчёт инстанса lib-alpha за 2026 год</h1>
+<p>&gt; Собран annual.py по разделам §20.4. Только метрики здоровья — &gt; ни одной анти-метрики. Читается вслух на дне сада.</p>
+<h2>Канон</h2>
+<ul><li>Карточек в каноне: <strong>8</strong> (включая эту карточку отчёта)</li><li>Опубликовано из черновиков за год: 3 (kn-2026-0418, kn-2026-0419, kn-2026-0420)</li><li>Свежая ревизия у всех карточек (просроченных нет на дату сборки).</li></ul>
+<h2>Вопросы</h2>
+<ul><li>Закрыто за год: 1 · открыто сейчас: 1</li></ul>
+<h2>Журнал власти</h2>
+<ul><li>Событий за год: <strong>40</strong>, из них подписано ключами ролей: 7</li></ul>
+<p>| Тип события | Сколько | |---|---| | <code>key.registered</code> | 5 | | <code>question.distilled</code> | 4 | | <code>keeper.appointed</code> | 4 | | <code>change.proposed</code> | 3 | | <code>draft.published</code> | 3 | | <code>change.accepted</code> | 2 | | <code>question.opened</code> | 2 | | <code>keeper.vouched</code> | 2 | | <code>gardener.elected</code> | 2 | | <code>charter.amended</code> | 2 | | <code>canon.initialized</code> | 1 | | <code>community.migrated</code> | 1 | | <code>question.answered</code> | 1 | | <code>thread.pinned</code> | 1 | | <code>change.returned</code> | 1 | | <code>recall.rejected</code> | 1 | | <code>recall.opened</code> | 1 | | <code>recall.dismissed</code> | 1 | | <code>draft.returned</code> | 1 | | <code>thanks.recorded</code> | 1 | | <code>gardener.retired</code> | 1 |</p>
+<h2>Инциденты (не сглаживаются)</h2>
+<ul><li><code>ldg-0023</code> recall.rejected — &quot;инициатива без ссылок на факты журнала отклонена (§18.5)&quot;</li><li><code>ldg-0024</code> recall.opened — &quot;проверяю процедуру: подозрение на возврат без причины&quot;</li><li><code>ldg-0025</code> recall.dismissed — &quot;Факт ldg-0009 проверен: закрытие вопроса q-0001 карточкой соответствует правилу §15.2, нарушения нет; инициатива признана тестовой, recall отклонён&quot;</li></ul>
+<h2>Здоровье рубрик</h2>
+<ul><li>Все рубрики имеют ≥2 хранителей (зелёная зона); рубрика «Обучение моделей» усилена третьим хранителем после процедуры поручительства.</li></ul>
+<h2>Федерация</h2>
+<ul><li>Статей в федеративном экспорте: 6</li><li>Подписок на чужие рубрики у инстанса нет (lib-alpha — источник для lib-beta).</li></ul>
+<h2>Следующий год (не больше трёх намерений)</h2>
+<ol><li>Закрыть годовой контур полностью: автотриггер молчания садовника (§20.9.2).</li><li>Провести первую перепись федерации с внешними зеркалами.</li><li>Реализовать Ed25519-подписи взамен HMAC (§17.5).</li></ol>
+<p>--- <em>Карточка отчёта создана annual.py 2026-07-21 от имени gardener:marina_k; процедура §20.4.</em></p></article>
+
+
+<div class="meta" style="margin-top:24px">Соавторы: @marina_k · ID: kn-2026-0423</div></main>
+<footer>Сгенерировано build.py · Канон = Markdown + Git · Каждое утверждение имеет дату и хранителя</footer>
+</div></body></html>
