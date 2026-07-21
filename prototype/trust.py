@@ -56,6 +56,13 @@ def append_ledger(actor, event, **kv):
         v = str(v)
         parts.append(f'{k}="{v}"' if ' ' in v else f'{k}={v}')
     line = ' | '.join(parts)
+    try:
+        import sign as _sign
+        nick = _sign.actor_nick(actor)
+        if nick:
+            line = _sign.sign_line(nick, line)
+    except ImportError:
+        pass
     with open(LEDGER, 'a', encoding='utf-8') as f:
         f.write(line + '\n')
     return f'ldg-{n+1:04d}'
