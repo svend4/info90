@@ -8,14 +8,14 @@
     {
       "type": "Announce",
       "actor": "https://lib-alpha.example.org/federation/actors/igor_s",
-      "object": "https://lib-alpha.example.org/federation/kn-2026-0419",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0007",
       "published": "2026-07-21"
     },
     {
       "type": "Announce",
       "actor": "https://lib-alpha.example.org/federation/actors/igor_s",
-      "object": "https://lib-alpha.example.org/federation/kn-2026-0007",
-      "published": "2026-07-19"
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0419",
+      "published": "2026-07-21"
     }
   ]
 }
