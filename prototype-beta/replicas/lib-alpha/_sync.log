@@ -1,0 +1,11 @@
+2026-07-21T06:40:58Z | replica.added | kn-2026-0007 | origin_version=9
+2026-07-21T06:40:58Z | replica.synced | outbox=outbox-formy_katalogi.json | new=1 upd=0 conflict=0 fresh=0 missing=0
+2026-07-21T06:40:58Z | replica.added | kn-2026-0417 | origin_version=15
+2026-07-21T06:40:58Z | replica.synced | outbox=outbox-formy_agregatory.json | new=1 upd=0 conflict=0 fresh=0 missing=0
+2026-07-21T06:40:58Z | replica.synced | outbox=outbox-formy_katalogi.json | new=0 upd=0 conflict=0 fresh=1 missing=0
+2026-07-21T06:41:37Z | replica.origin_missing | kn-2026-0007 | исчезла из outbox оригинала; копия сохранена (удаление не распространяется)
+2026-07-21T06:41:37Z | replica.synced | outbox=outbox-formy_katalogi.json | new=0 upd=0 conflict=0 fresh=0 missing=1
+2026-07-21T06:41:37Z | replica.origin_back | kn-2026-0007 | оригинал снова в outbox, пометка снята
+2026-07-21T06:41:37Z | replica.synced | outbox=outbox-formy_katalogi.json | new=0 upd=0 conflict=0 fresh=1 missing=0
+2026-07-21T06:42:07Z | replica.conflict | kn-2026-0007 | локальный канон содержит этот id — реплика отклонена
+2026-07-21T06:42:07Z | replica.synced | outbox=outbox-formy_katalogi.json | new=0 upd=0 conflict=1 fresh=0 missing=0

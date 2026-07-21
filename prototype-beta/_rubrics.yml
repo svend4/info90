@@ -1,0 +1,8 @@
+rubrics:
+  - id: soobshchestva
+    title: "Сообщества и площадки"
+    keepers: [daria_v, oleg_t]
+    children:
+      - id: soobshchestva/forumy
+        title: "Форумы"
+        keepers: [daria_v, oleg_t]
