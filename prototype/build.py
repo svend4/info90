@@ -128,13 +128,15 @@ def load_rubrics():
             stack.pop()
         ctx = stack[-1][1] if stack else None
         if k == '- id':
-            r = {'id': v, 'title': '', 'keeper': '', 'parent': ctx}
+            r = {'id': v, 'title': '', 'keeper': '', 'keepers': [], 'parent': ctx}
             rubrics.append(r)
             if ctx is not None:
                 ctx.setdefault('children', []).append(r)
             stack.append((indent, r))
         elif stack and k in ('title', 'keeper'):
             stack[-1][1][k] = v
+        elif stack and k == 'keepers':
+            stack[-1][1]['keepers'] = parse_inline(v)
     return rubrics
 
 # ---------- журнал власти и здоровье (фаза 1) ----------
@@ -168,6 +170,7 @@ def health_rows(cards, rubrics):
         keepers.discard(None)
         if r.get('keeper'):
             keepers.add(r['keeper'])
+        keepers.update(r.get('keepers', []))
         rows.append((f'Хранители: {r["title"]}', str(len(keepers)),
                      'green' if len(keepers) >= 2 else ('yellow' if len(keepers) == 1 else 'red')))
     stale = [c['id'] for c in cards if c.get('freshness', {}).get('review_due', '9999') < today]
@@ -330,7 +333,9 @@ def index_page(cards, rubrics):
         count = sum(1 for c in cards if r['id'] in c.get('rubrics', []))
         kids = ''.join(rubric_html(k, depth+1) for k in r.get('children', []))
         pad = ' style="margin-left:%dpx"' % (depth*20) if depth else ''
-        return f'<div class="card"{pad}><b>{r["title"]}</b> <span class="meta">({count} 📄 · хранитель @{r["keeper"] or "—"})</span>{kids}</div>'
+        ks = r.get('keepers') or ([r['keeper']] if r.get('keeper') else [])
+        kshow = ', '.join('@' + k for k in ks) or '—'
+        return f'<div class="card"{pad}><b>{r["title"]}</b> <span class="meta">({count} 📄 · хранители {kshow})</span>{kids}</div>'
     top = [r for r in rubrics if r['parent'] is None]
     rub = ''.join(rubric_html(r) for r in top)
     fresh = sorted(cards, key=lambda c: c.get('freshness', {}).get('verified_at', ''), reverse=True)
