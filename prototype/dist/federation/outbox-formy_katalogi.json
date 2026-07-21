@@ -1,14 +1,20 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
   "type": "OrderedCollection",
-  "id": "https://zh-lib.local/federation/outbox-formy_katalogi",
+  "id": "https://lib-alpha.example.org/federation/outbox-formy_katalogi",
   "name": "Рубрика «Каталоги» — анонсы версий",
-  "totalItems": 1,
+  "totalItems": 2,
   "orderedItems": [
     {
       "type": "Announce",
-      "actor": "https://zh-lib.local/federation/actors/igor_s",
-      "object": "https://zh-lib.local/federation/kn-2026-0007",
+      "actor": "https://lib-alpha.example.org/federation/actors/igor_s",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0419",
+      "published": "2026-07-21"
+    },
+    {
+      "type": "Announce",
+      "actor": "https://lib-alpha.example.org/federation/actors/igor_s",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0007",
       "published": "2026-07-19"
     }
   ]

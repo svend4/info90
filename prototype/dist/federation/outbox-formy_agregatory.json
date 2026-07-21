@@ -3,12 +3,18 @@
   "type": "OrderedCollection",
   "id": "https://lib-alpha.example.org/federation/outbox-formy_agregatory",
   "name": "Рубрика «Агрегаторы и голосование» — анонсы версий",
-  "totalItems": 1,
+  "totalItems": 2,
   "orderedItems": [
     {
       "type": "Announce",
       "actor": "https://lib-alpha.example.org/federation/actors/marina_k",
       "object": "https://lib-alpha.example.org/federation/kn-2026-0417",
+      "published": "2026-07-21"
+    },
+    {
+      "type": "Announce",
+      "actor": "https://lib-alpha.example.org/federation/actors/marina_k",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0418",
       "published": "2026-07-21"
     }
   ]

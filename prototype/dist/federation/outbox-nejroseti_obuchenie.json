@@ -1,14 +1,20 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
   "type": "OrderedCollection",
-  "id": "https://zh-lib.local/federation/outbox-nejroseti_obuchenie",
+  "id": "https://lib-alpha.example.org/federation/outbox-nejroseti_obuchenie",
   "name": "Рубрика «Обучение моделей» — анонсы версий",
-  "totalItems": 1,
+  "totalItems": 2,
   "orderedItems": [
     {
       "type": "Announce",
-      "actor": "https://zh-lib.local/federation/actors/pavel_d",
-      "object": "https://zh-lib.local/federation/kn-2026-0201",
+      "actor": "https://lib-alpha.example.org/federation/actors/sergey_l",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0420",
+      "published": "2026-07-21"
+    },
+    {
+      "type": "Announce",
+      "actor": "https://lib-alpha.example.org/federation/actors/pavel_d",
+      "object": "https://lib-alpha.example.org/federation/kn-2026-0201",
       "published": "2026-07-02"
     }
   ]
