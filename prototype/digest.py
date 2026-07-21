@@ -11,6 +11,7 @@ digest.py — еженедельный дайджест-смотр (докуме
 Использование:
   python3 digest.py             # дайджест текущей недели -> digest/
   python3 digest.py --days 14   # за другой период
+  python3 digest.py --person igor_s   # след человека в журнале (§18.9.5: фильтр, не агрегат)
 """
 import argparse
 import datetime
@@ -25,10 +26,50 @@ USEFUL = os.path.join(ROOT, 'threads', '_useful.log')
 DIGEST = os.path.join(ROOT, 'digest')
 
 
+def person_digest(nick):
+    """Дайджест по человеку (документ 18 §18.9.5): выборка первичных записей
+    журнала — НЕ числовая репутация. Читающий видит те же записи, только меньше."""
+    if not os.path.exists(LEDGER):
+        print('Журнал пуст.')
+        return 1
+    actor, mention = [], []
+    pat_actor = re.compile(r'\| (author|keeper|gardener|system)?:?' + re.escape(nick) + r' \|')
+    pat_keys = re.compile(r'(keeper|voucher|by|candidate|initiator|quorum)=[^|]*\b' + re.escape(nick) + r'\b')
+    for line in open(LEDGER, encoding='utf-8'):
+        line = line.rstrip('\n')
+        if pat_actor.search(line):
+            actor.append(line)
+        elif pat_keys.search(line):
+            mention.append(line)
+    today = datetime.date.today().isoformat()
+    out = ['# След участника %s в журнале власти (по состоянию на %s)' % (nick, today), '',
+           '> Фильтр журнала, а не агрегат (§18.9.5): здесь первичные записи —',
+           '> с именами, датами и причинами. Выводы делает читающий, не скрипт.', '']
+    out.append('## Действия (%s)' % len(actor))
+    out.append('')
+    out += ['- `%s`' % l for l in actor] or ['- нет']
+    out.append('')
+    out.append('## Упоминания в действиях других (%s)' % len(mention))
+    out.append('')
+    out += ['- `%s`' % l for l in mention] or ['- нет']
+    out.append('')
+    out.append('---')
+    out.append('*Собрано digest.py --person. Записи не сведены в число сознательно (документ 18).*')
+    os.makedirs(DIGEST, exist_ok=True)
+    path = os.path.join(DIGEST, 'person-%s.md' % nick)
+    open(path, 'w', encoding='utf-8').write('\n'.join(out) + '\n')
+    print('След участника: %s' % os.path.relpath(path, ROOT))
+    print('  действий: %d · упоминаний: %d' % (len(actor), len(mention)))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description='Еженедельный дайджест-смотр канона')
     ap.add_argument('--days', type=int, default=7)
+    ap.add_argument('--person', help='след участника в журнале (фильтр, не агрегат)')
     a = ap.parse_args()
+    if a.person:
+        return person_digest(a.person)
 
     sys.path.insert(0, ROOT)
     from build import load_cards, load_rubrics, health_rows
