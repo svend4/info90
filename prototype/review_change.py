@@ -51,6 +51,10 @@ def main():
     ch_path, meta, body, full = load_change(a.change_id)
     if meta.get('state') != 'open':
         raise SystemExit(f"заявка уже закрыта (state: {meta.get('state')})")
+    if meta.get('review_ban') == a.keeper:
+        raise SystemExit(
+            f"ОТВОД: {a.keeper} отведён от ревью {a.change_id} вердиктом апелляции "
+            f"(appeal.upheld) — повторное ревью делает другой хранитель (§18.9.4)")
 
     if a.action == 'accept':
         proposed = extract_proposed(body)
