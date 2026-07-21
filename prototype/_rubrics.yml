@@ -1,19 +1,21 @@
-# Дерево рубрик прототипа (фаза 0)
+# Дерево рубрик прототипа (фаза 0+)
+# keepers — именные выборные хранители рубрики (документ 04).
+# Правило здоровья (документ 13): >=2 хранителей = зелёная зона (защита от У1, документ 16).
 rubrics:
   - id: formy
     title: Формы организации информации
-    keeper: marina_k
+    keepers: [marina_k, igor_s]
     children:
       - id: formy/agregatory
         title: Агрегаторы и голосование
-        keeper: marina_k
+        keepers: [marina_k, igor_s]
       - id: formy/katalogi
         title: Каталоги
-        keeper: igor_s
+        keepers: [igor_s, anna_p]
   - id: nejroseti
     title: Нейросети
-    keeper: pavel_d
+    keepers: [pavel_d, anna_p]
     children:
       - id: nejroseti/obuchenie
         title: Обучение моделей
-        keeper: pavel_d
+        keepers: [pavel_d, anna_p]

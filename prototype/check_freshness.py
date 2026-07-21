@@ -98,6 +98,7 @@ def main():
         keepers.discard(None)
         if r.get('keeper'):
             keepers.add(r['keeper'])
+        keepers.update(r.get('keepers', []))
         z = zone(len(keepers) >= 2, len(keepers) == 1)
         red |= z == 'RED'
         print(f"[{z:6}] рубрика {r['id']}: хранителей {len(keepers)}")
