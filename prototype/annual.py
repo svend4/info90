@@ -152,7 +152,7 @@ def cmd_report(a):
     q_open = q_closed = 0
     for p in glob.glob(os.path.join(QUESTIONS, '*.md')):
         t = open(p, encoding='utf-8').read()
-        if 'state: closed' in t or 'status: closed' in t:
+        if 'state: closed' in t or 'status: closed' in t or 'status: answered' in t:
             q_closed += 1
         else:
             q_open += 1
@@ -167,7 +167,7 @@ def cmd_report(a):
 
 ## Канон
 
-- Карточек в каноне: **{len(cards)}**
+- Карточек в каноне: **{len(cards) + 1}** (включая эту карточку отчёта)
 - Опубликовано из черновиков за год: {len(published)}{(' (' + ', '.join(published) + ')') if published else ''}
 - Свежая ревизия у всех карточек (просроченных нет на дату сборки).
 
